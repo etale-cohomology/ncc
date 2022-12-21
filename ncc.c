@@ -253,6 +253,7 @@ fdef void nirparse(i64 tbdim,u8* tdata, i64* on){
 	// ----------------------------------------------------------------
 	print("\n\x1b[92mfwd-prop\x1b[0m\n");
 	mfor(j,0,N){
+		if(vidim(I[j])==0)  continue;
 		printf("n%02x = f%02x(",j,j);
 		vfor(I[j],i) printf(" +n%02x*w%02x%02x",*i,*i,j);
 		printf(")\n");
