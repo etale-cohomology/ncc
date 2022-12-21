@@ -153,7 +153,7 @@ Since a neural net is a graph, it can be represented in multiple ways, 3 of whic
 
 ## The fundamental equations
 
-The fundamental feedforward equation is for neuron `nj` is:
+The fundamental feedforward equation for neuron `nj` is:
 
 ```
 nj = fj[SUM[i,Ij, ni*wij]]
