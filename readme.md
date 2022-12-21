@@ -1,6 +1,6 @@
 # ncc
 
-`ncc` is a **compiler** for neural networks.  
+`ncc` is a **compiler** for neural nets.  
 `ncc` reads a representation of a neural net and it produces code for its arithmetic operations.  
 
 `ncc` is only intended to work with feedforward-only neural nets, ie. nets that admit only feedforward connections (examples: fully connected nets, convolutional nets, recurrent nets), as opposed to feedforward/feedback neural nets, like Deep Boltzman Machines.
