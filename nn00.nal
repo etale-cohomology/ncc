@@ -1,4 +1,4 @@
-% after the N line, every line has he form: j fj Ij, where j is the neuron index, fj is the activation function for neuron nj, Ij is the set of in-indices for neuron nj
+% after the N line, every line has the form: j fj Ij, where j is the neuron index, fj is the activation function for neuron nj, Ij is the set of in-indices for neuron nj
 N 0e
 00
 01
