@@ -97,6 +97,6 @@ The **neuron connections** are the (famous) set of **weights** (each weight `wij
 
 Since a neural net is a graph, it can be represented in multiple ways, 3 of which are:
 
-0. an adjacency matrix
+0. an adjacency matrix: if entry ij is 1, then neuron i goes into neuron j)
 1. an adjacency list: a map from each vertex `v` to a list of vertices (the vertices that `v` is connected to, or, equivalently, the vertices that are connected to `v`)
 2. a list of edges
