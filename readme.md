@@ -93,7 +93,7 @@ Currently only the forward pass works.
 # What is a neural net
 
 A **neural net** is a **directed graph**, where the **vertices** are the **neurons** and the **edges** are the **neuron connections**.  
-The **neuron connections** are the (famous) set of **weights** (ie. each weight `wij` represents a connection from neuron `ni` to neuron `nj`).  
+The **neuron connections** are the (famous) set of **weights** (each weight `wij` is a connection from neuron `ni` to neuron `nj`).  
 
 Since a neural net is a graph, it can be represented in multiple ways, 3 of which are:
 
