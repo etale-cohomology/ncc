@@ -159,7 +159,7 @@ The **fundamental feedforward equation** for neuron `nj` is:
 nj = fj[SUM[i,Ij, ni*wij]]
 ```
 
-where index `i` ranges over the set `Ij` of in-indices into neuron `nj`.
+where index `i` ranges over the set `Ij` of all in-indices into neuron `nj`.
 
 So, the value of each neuron `nj` depends on the value of all the neurons `{ni}` going it `nj`.
 
