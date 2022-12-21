@@ -45,7 +45,7 @@ n0c = f0c( +n08*w080c +n09*w090c +n0a*w0a0c +n0b*w0b0c)
 n0d = f0d( +n08*w080d +n09*w090d +n0a*w0a0d +n0b*w0b0d)
 ```
 
-**Example (Neural Adjacency Matrix).**
+**Example (Neural Adjacency Matrix: if entry ij is 1, then neuron i goes into neuron j).**
 
 Input:
 
