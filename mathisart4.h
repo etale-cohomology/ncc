@@ -540,11 +540,11 @@ You can't take the actual value:  ((ST*)0)->name
 
 // ----------------------------------------------------------------------------------------------------------------------------# @blk1  libsys: a collection of (replacements for) low-level userland API calls, and lightweight wappers around them to create functions that should exist in said API already
 /*
-https://www.felixcloutier.com/x86
-https://www.felixcloutier.com/x86/bsf
-https://www.felixcloutier.com/x86/bsr
-https://www.felixcloutier.com/x86/div
-https://www.felixcloutier.com/x86/popcnt
+https://felixcloutier.com/x86
+https://felixcloutier.com/x86/bsf
+https://felixcloutier.com/x86/bsr
+https://felixcloutier.com/x86/div
+https://felixcloutier.com/x86/popcnt
 https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
 */
 #if defined(__x86_64__)
