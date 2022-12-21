@@ -165,7 +165,7 @@ So, the value of each neuron `nj` depends on the value of all the neurons `{ni}`
 
 This is a recursive equation because each incoming neuron `ni` in turn depends on other neurons, and those depend on others, and so on, until the raw input.
 
-This results in a proliferation of forward calculations, but most of the calculations are repeated, so the complexity of a fwd-pass over the entire net should be `O[N*K]`, where `N` is the number of neurons and `K` is the average number of outgoing neuron connections. Equivalently, the complexity should be `O[W+N]`, where `W` is the number of **neuron connections** (aka. "weights"): 1 `mul` for each weight `wij` from neuron `ni` to neuron `nj`, and 1 `fj` evaluation for each neuron `nj`.
+This results in a proliferation of forward calculations, but most of the calculations are repeated, so the complexity of a fwd-pass over the entire net should be `O[N*K+N]`, where `N` is the number of neurons and `K` is the average number of outgoing neuron connections. Equivalently, the complexity should be `O[W+N]`, where `W` is the number of **neuron connections** (aka. "weights"): 1 `mul` for each weight `wij` from neuron `ni` to neuron `nj`, and 1 `fj` evaluation for each neuron `nj`.
 
 Something similar happens in the bwd-pass, in the opposite direction: the loss-weight derivative `DLY_Dwij` for each weight `wij` depends on all the neurons `{nk}` coming **out of** neuron `nj`, and each outgoing neuron `nk` in turn goes into other neurons, and those go into others, and so on, until the final output.
 
