@@ -26,7 +26,7 @@ N 0e
 0d 03 08,09,0a,0b
 ```
 
-Output:
+Output (fwd-pass):
 
 ```
 n04 = f04( +n00*w0004 +n01*w0104)
@@ -39,6 +39,39 @@ n0a = f0a( +n05*w050a +n06*w060a +n07*w070a)
 n0b = f0b( +n06*w060b +n07*w070b)
 n0c = f0c( +n08*w080c +n09*w090c +n0a*w0a0c +n0b*w0b0c)
 n0d = f0d( +n08*w080d +n09*w090d +n0a*w0a0d +n0b*w0b0d)
+```
+
+Output (bwd-pass, incomplete/incorrect):
+
+```
+w0004 =  +DLY_n08*Dn08_w0004 +DLY_n09*Dn09_w0004
+w0104 =  +DLY_n08*Dn08_w0104 +DLY_n09*Dn09_w0104
+w0005 =  +DLY_n08*Dn08_w0005 +DLY_n09*Dn09_w0005 +DLY_n0a*Dn0a_w0005
+w0105 =  +DLY_n08*Dn08_w0105 +DLY_n09*Dn09_w0105 +DLY_n0a*Dn0a_w0105
+w0205 =  +DLY_n08*Dn08_w0205 +DLY_n09*Dn09_w0205 +DLY_n0a*Dn0a_w0205
+w0106 =  +DLY_n09*Dn09_w0106 +DLY_n0a*Dn0a_w0106 +DLY_n0b*Dn0b_w0106
+w0206 =  +DLY_n09*Dn09_w0206 +DLY_n0a*Dn0a_w0206 +DLY_n0b*Dn0b_w0206
+w0306 =  +DLY_n09*Dn09_w0306 +DLY_n0a*Dn0a_w0306 +DLY_n0b*Dn0b_w0306
+w0207 =  +DLY_n0a*Dn0a_w0207 +DLY_n0b*Dn0b_w0207
+w0307 =  +DLY_n0a*Dn0a_w0307 +DLY_n0b*Dn0b_w0307
+w0408 =  +DLY_n0c*Dn0c_w0408 +DLY_n0d*Dn0d_w0408
+w0508 =  +DLY_n0c*Dn0c_w0508 +DLY_n0d*Dn0d_w0508
+w0409 =  +DLY_n0c*Dn0c_w0409 +DLY_n0d*Dn0d_w0409
+w0509 =  +DLY_n0c*Dn0c_w0509 +DLY_n0d*Dn0d_w0509
+w0609 =  +DLY_n0c*Dn0c_w0609 +DLY_n0d*Dn0d_w0609
+w050a =  +DLY_n0c*Dn0c_w050a +DLY_n0d*Dn0d_w050a
+w060a =  +DLY_n0c*Dn0c_w060a +DLY_n0d*Dn0d_w060a
+w070a =  +DLY_n0c*Dn0c_w070a +DLY_n0d*Dn0d_w070a
+w060b =  +DLY_n0c*Dn0c_w060b +DLY_n0d*Dn0d_w060b
+w070b =  +DLY_n0c*Dn0c_w070b +DLY_n0d*Dn0d_w070b
+w080c = 
+w090c = 
+w0a0c = 
+w0b0c = 
+w080d = 
+w090d = 
+w0a0d = 
+w0b0d = 
 ```
 
 **Example (Neural Adjacency Matrix: if entry ij is 1, then neuron i goes into neuron j).**
@@ -62,7 +95,7 @@ Input:
 00000000000000
 ```
 
-Output:
+Output (fwd-pass):
 
 ```
 n00 = f00()
@@ -81,7 +114,7 @@ n0c = f0c( +n08*w080c +n09*w090c +n0a*w0a0c +n0b*w0b0c)
 n0d = f0d( +n08*w080d +n09*w090d +n0a*w0a0d +n0b*w0b0d)
 ```
 
-Another output:
+Another output (fwd-pass):
 
 ```
 14 1  196 56
