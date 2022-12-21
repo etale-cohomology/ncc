@@ -1,12 +1,13 @@
 /*
-t tcc   nam.c -o nam                          &&  t ./nam
-t gcc-8 nam.c -o nam                          &&  t ./nam
-t gcc-8 nam.c -o nam  $cflags $cnopie $cfast  &&  t ./nam
+t tcc   ncc.c -o ncc                          &&  t ./ncc
+t gcc-8 ncc.c -o ncc                          &&  t ./ncc
+t gcc-8 ncc.c -o ncc  $cflags $cnopie $cfast  &&  t ./ncc
+cp $mathisart/mathisart4.h .
 
-# .nir file format spec
+# .nal file format spec
 
-- 1 .nir file encodes 1 neural net
-- all number are interpreted as big-endian in hex base, over the alphabet: @{0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f}. eg. the NIR number @ffff is the (big-endian, decimal) number @65535, also known as sixty-five thousand five hundred and thirty-five
+- 1 .nal file encodes 1 neural net
+- all number are interpreted as big-endian in hex base, over the alphabet: @{0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f}. eg. the NAL number @ffff is the (big-endian, decimal) number @65535, also known as sixty-five thousand five hundred and thirty-five
 - each neuron index @j maps to a 2-tuple @(fj,Ij), where @fj is the activation fn for neuron @nj, and @Ij is the set of in-indices @{i} for neuron @nj, so that the value of each neuron @nj is `SUM[i,Ij, ni*wij]`
 - no neuron index @j can be missing, but the activation function @fj or the in-indices set @Ij can
 - activation fn codes:
@@ -20,7 +21,7 @@ t gcc-8 nam.c -o nam  $cflags $cnopie $cfast  &&  t ./nam
 */
 #include <mathisart4.h>
 
-#define NIRPATH "nn00.nir"
+#define NALPATH "nn00.nal"
 #define NAMPATH "nn00.nam"
 
 #define OPADD    0xffffffff
@@ -53,8 +54,8 @@ fdef void nntut(){  // nj = fj[SUM[i,Ij, ni*wij]]  // THE VALUE OF EACH NEURON n
 	print("\x1b[91m- \x1b[0mto FULLY SPECIFY (the topology/connectivity of) a net (feedforward-only like fc/conv/recurrent nets, or feedforward/feedback like deep boltzmann machines).\n");
 	print("  it suffices to SPECIFY \x1b[92mN\x1b[0m, \x1b[35mf\x1b[32mj \x1b[0mfor each \x1b[32mj \x1b[91min \x1b[92mN\x1b[0m, and \x1b[92mI\x1b[32mj \x1b[0mfor each \x1b[32mj \x1b[91min \x1b[92mN\x1b[0m, OR\n");
 	print("  it suffices to SPECIFY \x1b[92mN\x1b[0m, \x1b[35mf\x1b[32mj \x1b[0mfor each \x1b[32mj \x1b[91min \x1b[92mN\x1b[0m, and \x1b[92mO\x1b[32mj \x1b[0mfor each \x1b[32mj \x1b[91min \x1b[92mN\x1b[0m.\n");
-	print("  this representation is called the \x1b[91mNIR \x1b[0m(neural index representation), because it encodes the (topology/connectivity of) the net via \x1b[92mN \x1b[0msets of indices.\n");
-	print("  example (\x1b[91mNIR\x1b[0m).\n");
+	print("  this representation is called the \x1b[91mNAL \x1b[0m(neural adjacency list), because it encodes the (topology/connectivity of) the net via \x1b[92mN \x1b[0msets of indices.\n");
+	print("  example (\x1b[91mNAL\x1b[0m).\n");
 	print("    let \x1b[92mN \x1b[0mbe \x1b[34m0x\x1b[35m0e\x1b[0m. now:\n");
 	print("      \x1b[91m- \x1b[0mthe \x1b[32mj\x1b[0m-indices             are in \x1b[91m{ \x1b[32m0\x1b[0m, \x1b[32m1\x1b[0m, \x1b[32m2\x1b[0m, \x1b[32m3\x1b[0m, \x1b[32m4\x1b[0m, \x1b[32m5\x1b[0m, \x1b[32m6\x1b[0m, \x1b[32m7\x1b[0m, \x1b[32m8\x1b[0m, \x1b[32m9\x1b[0m, \x1b[32ma\x1b[0m, \x1b[32mb\x1b[0m, \x1b[32mc\x1b[0m, \x1b[32md\x1b[0m\x1b[91m}\x1b[0m\n");
 	print("      \x1b[91m- \x1b[0mthe neurons n\x1b[32mj            \x1b[0mare in \x1b[91m{\x1b[0mn\x1b[32m0\x1b[0m,n\x1b[32m1\x1b[0m,n\x1b[32m2\x1b[0m,n\x1b[32m3\x1b[0m,n\x1b[32m4\x1b[0m,n\x1b[32m5\x1b[0m,n\x1b[32m6\x1b[0m,n\x1b[32m7\x1b[0m,n\x1b[32m8\x1b[0m,n\x1b[32m9\x1b[0m,n\x1b[32ma\x1b[0m,n\x1b[32mb\x1b[0m,n\x1b[32mc\x1b[0m,n\x1b[32md\x1b[0m\x1b[91m}\x1b[0m\n");
@@ -89,7 +90,7 @@ fdef void nntut(){  // nj = fj[SUM[i,Ij, ni*wij]]  // THE VALUE OF EACH NEURON n
 	print("    now \x1b[92mO\x1b[32mc \x1b[0mis \x1b[91m{\x1b[91m}\x1b[0m.        so n\x1b[32mc \x1b[0mgoes  into nothing\x1b[0m\n");
 	print("    now \x1b[92mO\x1b[32md \x1b[0mis \x1b[91m{\x1b[91m}\x1b[0m.        so n\x1b[32md \x1b[0mgoes  into nothing\x1b[0m\n");
 	print("    this specifies a net with: 4 inputs, a 4-neuron (sparsely-connected) hidden layer, a 4-neuron (sparsely-connected) hidden layer, and 2 outputs\n");
-	print("\x1b[91m- \x1b[0mthe \"number of layers\" is an implicit number given in the NAM/NIR, defined as the longest chain in a topological sort of the connectivity graph (implicitly) given by the NAM/NIR\n");
+	print("\x1b[91m- \x1b[0mthe \"number of layers\" is an implicit number given in the NAL/NAM, defined as the longest chain in a topological sort of the connectivity graph (implicitly) given by the NAL/NAM\n");
 }
 
 fdef void nirshow(){}
@@ -138,7 +139,7 @@ fdef void opsshow(u32** ops){  // @arg ops  a vector of type u32[2], ie. u32[][]
 #define nnchk(st,...)                     do{  if(st){ printf("\x1b[91mFAIL  \x1b[92m%s  \x1b[0m", __func__); printf(""__VA_ARGS__); putchar(0x0a); exit(1); }  }while(0)
 #define nirpchk(tbdim,tdata,line,st,...)  do{  if(st){ printf("\x1b[91mFAIL  \x1b[92m%s  \x1b[31m%'d \x1b[32m%02x \x1b[34m%'d  \x1b[0m", __func__,tbdim,*tdata,line); printf(""__VA_ARGS__); putchar(0x0a); exit(1); }  }while(0)
 
-// @meta  NIR parse u64. consume at least 1 character, or fail
+// @meta  NAL parse u64. consume at least 1 character, or fail
 #define nirpu64(tbdim,tdata,line)({                                           \
 	u64 _n   = 0;                                                               \
 	u8  _val = *tdata;                                                          \
@@ -340,7 +341,7 @@ void namparse(i64 txtbdim,u8* txtdata, i64* on,u32** oNAM){  // n is the number 
 
 // ----------------------------------------------------------------------------------------------------------------------------# @blk1
 fdefe int main(int nargs, char* args[]){
-	char* filepath = NIRPATH;  if(1<nargs) filepath = args[1];
+	char* filepath = NALPATH;  if(1<nargs) filepath = args[1];
 	if(access(filepath,F_OK|R_OK)<0){ fail("can't open \x1b[92m%s\x1b[0m",filepath); exit(1); }
 
 	// ----------------------------------------------------------------
