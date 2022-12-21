@@ -163,6 +163,6 @@ where index `i` ranges over the set `Ij` of all in-indices into neuron `nj`.
 
 So, the value of each neuron `nj` depends on the value of all the neurons `{ni}` going it `nj`.
 
-This is a recursive equation because each incoming neuron `ni` will in turn depend on other neurons, and those will depend on others, and so on, until the raw input.
+This is a recursive equation because each incoming neuron `ni` in turn depends on other neurons, and those depend on others, and so on, until the raw input.
 
-Something similar happens in the backward pass, in the opposite direction: each weight `wij` depends on all the neurons coming **out of** neuron `nj`.
+Something similar happens in the backward pass, in the opposite direction: each weight `wij` depends on all the neurons `{nk}` coming **out of** neuron `nj`, and each outgoing neuron `nk` in turn goes into other neurons, and those go into others, and so on, until the final output.
