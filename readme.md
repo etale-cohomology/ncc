@@ -165,4 +165,4 @@ So, the value of each neuron `nj` depends on the value of all the neurons `{ni}`
 
 This is a recursive equation because each incoming neuron `ni` will in turn depend on other neurons, and those will depend on others, and so on, until the raw input.
 
-Something similar in natural (but more complicated in details) happens in the backward pass.
+Something similar happens in the backward pass, in the opposite direction: each weight `wij` depends on all the neurons coming **out of** neuron `nj`.
