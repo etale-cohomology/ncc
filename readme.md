@@ -150,3 +150,19 @@ Since a neural net is a graph, it can be represented in multiple ways, 3 of whic
 0. an adjacency matrix: if entry ij is 1, then neuron `ni` goes into neuron `nj`)
 1. an adjacency list: a map from each vertex `v` to a list of vertices (the vertices that `v` is connected to, or, equivalently, the vertices that are connected to `v`)
 2. a list of edges
+
+## The fundamental equations
+
+The fundamental feedforward equation is for neuron `nj` is:
+
+```
+nj = fj[SUM[i,Ij, ni*wij]]
+```
+
+where index `i` ranges over the set `Ij` of in-indices into neuron `nj`.
+
+So, the value of each neuron `nj` depends on the value of all the neurons `{ni}` going it `nj`.
+
+This is a recursive equation because each incoming neuron `ni` will in turn depend on other neurons, and those will depend on others, and so on, until the raw input.
+
+Something similar in natural (but more complicated in details) happens in the backward pass.
