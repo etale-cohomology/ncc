@@ -98,5 +98,5 @@ The **neuron connections** are the (famous) set of **weights**.
 Since a neural net is a graph, it can be represented in multiple ways, 3 of which are:
 
 0. an adjacency matrix
-1. a map from each vertex V to a list of vertices (the vertices that V is connected to, or, equivalently, the vertices that are connected to V)
+1. an adjacency list: a map from each vertex V to a list of vertices (the vertices that V is connected to, or, equivalently, the vertices that are connected to V)
 2. a list of edges
