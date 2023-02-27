@@ -18,6 +18,9 @@ cp $mathisart/mathisart4.h .
 	4: silu
 	5: gelu
 	6: swish
+
+def nlogits(p,q):  # @meta  the number of trials for an event of proba q to have proba p of at least 1 occurrence  # @eg  nlogits(1/2, 1/2)  # @eg  nlogits(0.99, 1/10)
+	return m.log(1-p)/m.log(1-q)
 */
 #include <mathisart4.h>
 
@@ -28,6 +31,9 @@ cp $mathisart/mathisart4.h .
 #define OPMUL    0xfffffffe
 
 // ----------------------------------------------------------------------------------------------------------------------------# @blk1
+/*
+DLY/Dnj = SUM[y,, DLY/DLy * DLy/DLyz * SUM[k,Oj, DLyz/nk]]
+*/
 fdef void nntut(){  // nj = fj[SUM[i,Ij, ni*wij]]  // THE VALUE OF EACH NEURON nj IS ALWAYS ALWAYS A SIMPLE DOT PRODUCT
 	sep();
 	print("\x1b[92m%c\x1b[0m\n", __func__);
